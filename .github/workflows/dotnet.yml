@@ -20,5 +20,10 @@ jobs:
     - name: Install SpecFlow
       run: dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
     - name: Export Living Docs
-      run:  /root/.dotnet/tools/livingdoc feature-folder features
+      run:  livingdoc feature-folder features
+    - name: Archive Living Docs
+      uses: actions/upload-artifact@v3
+      with:
+        name: living-docs
+        path: LivingDoc.html
 
