@@ -1,4 +1,4 @@
-name: .NET
+name: Living Spec
 
 on:
   push:
