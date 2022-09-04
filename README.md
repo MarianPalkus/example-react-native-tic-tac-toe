@@ -2,6 +2,12 @@
 
 This repository is an example react-native based implementation of the game "tic tac toe".
 
+## Specification And Concept
+
+The specification is written in form of a living documentation (see adr [docs/adr/0004-testing-tools.md](docs/adr/0004-testing-tools.md)).
+The specification lives in `/features`.
+
+The basic UX concept lives in [docs/ux_concept.md](docs/ux_concept.md).
 
 ## Architecture Decisions Records (ADR)
 
