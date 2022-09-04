@@ -14,3 +14,8 @@ Create a new adr:
 Related npm scripts:
  - `npm run adr-list`: list all ADRs
  - `npm run adr-export`: exports ADRs to html (`export.hmtl`)
+
+## Code Quality
+
+- Eslint and prettier  (see [docs/adr/0003-use-eslint-and-prettier.md](docs/adr/0003-use-eslint-and-prettier.md)).
+- Check code quality: `npm run eslint`

@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "adr-new": "adr new",
     "adr-list": "adr list",
-    "adr-report": "adr export html"
+    "adr-report": "adr export html",
+    "eslint": "npx eslint App.tsx"
   },
   "dependencies": {
     "@types/react": "~18.0.0",
@@ -22,7 +23,30 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "adr": "^1.4.1"
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "adr": "^1.4.1",
+    "eslint": "^8.23.0",
+    "eslint-config-universe": "^11.1.0",
+    "prettier": "^2.7.1"
   },
-  "private": true
+  "private": true,
+  "eslintConfig": {
+    "extends": [
+      "universe/native",
+      "universe/shared/typescript-analysis"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.ts",
+          "*.tsx",
+          "*.d.ts"
+        ],
+        "parserOptions": {
+          "project": "./tsconfig.json"
+        }
+      }
+    ]
+  }
 }
