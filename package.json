@@ -46,6 +46,19 @@
       "universe/native",
       "universe/shared/typescript-analysis"
     ],
+    "rules": {
+      "import/order": [
+        "warn",
+        {
+          "groups": [
+            [
+              "builtin",
+              "external"
+            ]
+          ]
+        }
+      ]
+    },
     "overrides": [
       {
         "files": [
