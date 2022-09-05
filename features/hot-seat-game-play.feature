@@ -12,31 +12,34 @@ Assuming that "player 1" plays with "X" and "player 2" plays with "O".
   Scenario: 'X' plays first
   The convention that player 1/"X" plays first is used.
 
-    Then it's player 1's turn.
+    Then it's X's turn.
 
   Scenario Outline: Next turn
     Given there is at least one free cell on the board left
-    And and <player_last> made the last turn
-    Then it is <player_next>'s turn.
+    And and <mark_last> made the last turn
+    Then it is <mark_next>'s turn.
 
     Examples:
-     | player_last | player_next |
-     |   player 1  |   player 2  |
-     |   player 2  |   player 1  |
+      | mark_last | mark_next |
+      | X         | O         |
+      | O         | X         |
 
   Scenario Outline: Placing Marks
-    Given it is <mark>'s turn
+    Given it is <current_marker>'s turn
     And the top-left cell is already marked with <cell_marker>
-    When the player wants to place the mark <mark> in the top-left cell
-    Then the move is <is_valid>
+    When the player wants to place the mark <current_marker> in the top-left cell
+    Then the top-left cell is marked with <valid_marker>
+    And it is <next_mark>'s turn.
 
     Examples:
-     | mark | cell_marker | is_valid |
-     |   X  |      X      |  invalid |
-     |   Y  |      X      |  invalid |
-     |   X  |      Y      |  invalid |
-     |   -  |      X      |   valid  |
-     |   -  |      Y      |   valid  |
+      | current_marker | cell_marker | valid_marker | next_mark |
+      | X              | X           | X            | X         |
+      | O              | X           | X            | O         |
+      | X              | O           | O            | X         |
+      | O              | O           | O            | O         |
+      | X              | -           | X            | O         |
+      | O              | -           | O            | X         |
+
 
 
   Scenario: Winning a Game
