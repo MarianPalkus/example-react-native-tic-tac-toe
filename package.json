@@ -14,6 +14,7 @@
     "eslint": "npx eslint App.tsx"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.5",
     "@types/react": "~18.0.0",
     "@types/react-native": "~0.69.1",
     "expo": "~46.0.9",
