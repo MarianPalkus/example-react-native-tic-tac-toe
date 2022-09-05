@@ -11,7 +11,7 @@
     "adr-new": "adr new",
     "adr-list": "adr list",
     "adr-report": "adr export html",
-    "eslint": "npx eslint App.tsx"
+    "eslint": "npx eslint App.tsx src/"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
