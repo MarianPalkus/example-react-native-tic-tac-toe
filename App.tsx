@@ -1,7 +1,7 @@
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore } from './src/state/redux-store';
-import { AppRootNavigation } from './src/screens/app-root-navigation';
+import { createStore } from './src/redux/redux-store';
+import { AppRootNavigation } from './src/app-root-navigation';
 
 const store = createStore();
 export default function App() {

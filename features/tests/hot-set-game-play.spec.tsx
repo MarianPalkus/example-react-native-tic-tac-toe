@@ -1,12 +1,12 @@
 import React from 'react';
 const { render, fireEvent } = require('@testing-library/react-native');
 import { defineFeature, loadFeature } from 'jest-cucumber';
-import { createStore } from '../../src/state/redux-store';
+import { createStore } from '../../src/redux/redux-store';
 import { Provider } from 'react-redux';
-import { AppRootNavigation } from '../../src/screens/app-root-navigation';
+import { AppRootNavigation } from '../../src/app-root-navigation';
 import { getGameBoardCellAccessibilityLabel } from '../../src/components/game-board';
 import { CellIndex } from '../../src/models/game-state';
-import { getLabelForNextTurn } from '../../src/screens/hot-seat-game';
+import { getLabelForNextTurn } from '../../src/components/hot-seat-game';
 
 const feature = loadFeature('features/hot-seat-game-play.feature');
 

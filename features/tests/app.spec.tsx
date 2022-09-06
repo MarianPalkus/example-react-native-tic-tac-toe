@@ -1,9 +1,9 @@
 import React from 'react';
 const { render, fireEvent } = require('@testing-library/react-native');
 import { defineFeature, loadFeature } from 'jest-cucumber';
-import { createStore } from '../../src/state/redux-store';
+import { createStore } from '../../src/redux/redux-store';
 import { Provider } from 'react-redux';
-import { AppRootNavigation } from '../../src/screens/app-root-navigation';
+import { AppRootNavigation } from '../../src/app-root-navigation';
 
 const feature = loadFeature('features/app.feature');
 
