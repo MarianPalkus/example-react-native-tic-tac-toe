@@ -41,7 +41,10 @@
   },
   "private": true,
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "moduleNameMapper": {
+      "\\.svg": "<rootDir>/src/__mocks__/svgMock.js"
+    }
   },
   "eslintConfig": {
     "extends": [
