@@ -39,7 +39,7 @@ jobs:
     - name: Fetch Living Docs from Artifacts
       uses: actions/download-artifact@v3
       with:
-        name: living-doc
+        name: living-docs
     - name: Deploy to Github Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
