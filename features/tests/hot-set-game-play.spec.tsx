@@ -1,4 +1,5 @@
 import React from 'react';
+
 const { render, fireEvent } = require('@testing-library/react-native');
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import { createStore } from '../../src/redux/redux-store';
@@ -43,13 +44,74 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('Winning a Game', ({ when, and }) => {
+  test('Winning a Game', ({ when, and, then }) => {
     when('the user starts the app', () => {
       renderResult = renderApp();
     });
 
     and(/^the user starts a new "(.*)" game$/, () => {
       fireEvent.press(renderResult.getByText('Start Game'));
+    });
+
+    when(
+      /^player (.*) has placed three marks in a (.*) row$/,
+      (winnerMark, winnerRowOrientation: 'horizontal' | 'vertical' | 'diagonal') => {
+        const isWinnersTurn = winnerMark === 'X';
+
+        const movesToSimulate = {
+          horizontal: {
+            winnerMoves: [
+              [0, 0],
+              [0, 1],
+              [0, 2],
+            ],
+            loserMoves: [
+              [2, 0],
+              [1, 1],
+              [2, 2],
+            ],
+          },
+          vertical: {
+            winnerMoves: [
+              [0, 0],
+              [1, 0],
+              [2, 0],
+            ],
+            loserMoves: [
+              [0, 1],
+              [0, 2],
+              [1, 2],
+            ],
+          },
+          diagonal: {
+            winnerMoves: [
+              [0, 0],
+              [1, 1],
+              [2, 2],
+            ],
+            loserMoves: [
+              [0, 1],
+              [0, 2],
+              [1, 2],
+            ],
+          },
+        }[winnerRowOrientation];
+
+        if (!isWinnersTurn) {
+          fireEventToMarkCell({ row: 2, column: 1 });
+        }
+
+        for (let i = 0; i < 3; i++) {
+          const winnerMove = movesToSimulate.winnerMoves[i] as [CellIndex, CellIndex];
+          const loserMove = movesToSimulate.loserMoves[i] as [CellIndex, CellIndex];
+          fireEventToMarkCell({ row: winnerMove[0], column: winnerMove[1] });
+          fireEventToMarkCell({ row: loserMove[0], column: loserMove[1] });
+        }
+      }
+    );
+
+    then(/^player (.*) has won the game.$/, (winner) => {
+      renderResult.getByText(`${winner} has won!`);
     });
   });
 
@@ -76,11 +138,11 @@ defineFeature(feature, (test) => {
       fireEventToMarkCell({ row: 2, column: 1 });
     });
 
-    and('no player has won the game', () => {
-      throw Error('Needs assertion');
-    });
+    and('no player has won the game', () => {});
 
-    then('the game ends as a draw.', () => {});
+    then('the game ends as a draw.', () => {
+      renderResult.getByText("It's a draw!");
+    });
   });
 
   test('End Game', ({ when, and, given, then }) => {

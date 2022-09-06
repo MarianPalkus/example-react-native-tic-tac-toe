@@ -1,5 +1,5 @@
 Feature: "Hot Seat" Game Play
-"Hot seat" is a multiplayer mode provided by turn-based video games, which allows two or more players to play on the same device by taking turns playing the game. 
+"Hot seat" is a multiplayer mode provided by turn-based video games, which allows two or more players to play on the same device by taking turns playing the game.
 (source https://en.wikipedia.org/wiki/Hotseat_(multiplayer_mode))
 
 Assuming that "player 1" plays with "X" and "player 2" plays with "O".
@@ -41,12 +41,23 @@ Assuming that "player 1" plays with "X" and "player 2" plays with "O".
       | O              | -           | O            | X         |
 
 
+  Scenario Outline: Winning a Game
+  The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
 
-  Scenario: Winning a Game
-    The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
+    When player <winner> has placed three marks in a <winning_row_orientation> row
+    Then player <winner> has won the game.
+
+    Examples:
+      | winner | winning_row_orientation |
+      | X      | horizontal              |
+      | X      | vertical                |
+      | X      | diagonal                |
+      | O      | horizontal              |
+      | O      | vertical                |
+      | O      | diagonal                |
 
   Scenario: Draw
-    If no player won the game and there is no free cell left for the next player to place their mark,  it is a draw.
+  If no player won the game and there is no free cell left for the next player to place their mark,  it is a draw.
 
     Given all cells are marked with "X" or "O"
     And no player has won the game
