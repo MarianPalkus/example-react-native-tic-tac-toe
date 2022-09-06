@@ -68,8 +68,8 @@ defineFeature(feature, (test) => {
       fireEventToMarkCell({ row: 0, column: 2 });
 
       fireEventToMarkCell({ row: 1, column: 0 });
-      fireEventToMarkCell({ row: 0, column: 2 });
-      fireEventToMarkCell({ row: 0, column: 1 });
+      fireEventToMarkCell({ row: 1, column: 2 });
+      fireEventToMarkCell({ row: 1, column: 1 });
 
       fireEventToMarkCell({ row: 2, column: 0 });
       fireEventToMarkCell({ row: 2, column: 2 });

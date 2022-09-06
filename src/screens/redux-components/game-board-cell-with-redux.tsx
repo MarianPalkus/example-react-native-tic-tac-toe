@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import React, { useMemo } from 'react';
-import { TouchableHighlight } from 'react-native';
+import { StyleProp, TouchableHighlight, ViewStyle } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { CellIndex } from '../../models/game-state';
 import { GameBoardCell } from '../../components/game-board';
@@ -13,7 +13,15 @@ const createMoveForCellSelector = ({ row, column }: { row: CellIndex; column: Ce
   );
 };
 
-export const GameBoardCellWithRedux = ({ row, column }: { row: CellIndex; column: CellIndex }) => {
+export const GameBoardCellWithRedux = ({
+  row,
+  column,
+  style,
+}: {
+  row: CellIndex;
+  column: CellIndex;
+  style: StyleProp<ViewStyle>;
+}) => {
   const dispatch = useDispatch();
   const onPress = () => dispatch(playerMoveAction({ row, column }));
   const moveForCellSelector = useMemo(
@@ -23,7 +31,7 @@ export const GameBoardCellWithRedux = ({ row, column }: { row: CellIndex; column
   const moveForCell = useSelector(moveForCellSelector);
 
   return (
-    <TouchableHighlight onPress={onPress} underlayColor="#666666">
+    <TouchableHighlight onPress={onPress} underlayColor="#4c6ef5" style={style}>
       <GameBoardCell row={row} column={column} marker={moveForCell?.mark} isHighlighted={false} />
     </TouchableHighlight>
   );
