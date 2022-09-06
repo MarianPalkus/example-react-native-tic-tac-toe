@@ -28,7 +28,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: living-docs
-        path: github-pages/index.html
+        path: github-pages/
 
   deploy:
     needs: build
