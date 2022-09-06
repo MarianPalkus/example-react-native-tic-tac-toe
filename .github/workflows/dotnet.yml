@@ -31,7 +31,7 @@ jobs:
         path: github-pages/index.html
 
   deploy:
-
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
