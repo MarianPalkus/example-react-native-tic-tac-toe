@@ -20,15 +20,12 @@ jobs:
     - name: Install SpecFlow
       run: dotnet tool install --global SpecFlow.Plus.LivingDoc.CLI
     - name: Export Living Docs
-      run: |
-        livingdoc feature-folder features
-        mkdir github-pages
-        mv LivingDoc.html github-pages/index.html
+      run: livingdoc feature-folder features
     - name: Archive Living Docs
       uses: actions/upload-artifact@v3
       with:
         name: living-docs
-        path: github-pages/
+        path: LivingDoc.html
 
   deploy:
     needs: build
@@ -40,6 +37,10 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: living-docs
+    - name: Prepare deployment
+      run: |
+        mkdir github-pages
+        mv LivingDoc.html github-pages/index.html
     - name: Deploy to Github Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
